@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>АгнияКомбат27</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            overflow-x: hidden;
+            transition: background 0.5s ease;
+        }
+
+        /* Стили для темы */
+        body.theme-dark {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+        }
+        body.theme-pink {
+            background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+        }
+        body.theme-dark .click-button {
+            background: linear-gradient(145deg, #4ecdc4, #556270);
+        }
+        body.theme-pink .click-button {
+            background: linear-gradient(145deg, #fd746c, #ff9068);
+        }
+
+        /* Контейнеры и общие элементы */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(0deg);
+            z-index: -1;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Заголовок и текст */
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            animation: titleGlow 2s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 0 rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .counter {
+            font-size: 3rem;
+            color: white;
+            margin: 30px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .message {
+            font-size: 1.4rem;
+            margin: 20px 0;
+            min-height: 40px;
+            color: #ffeb3b;
+            text-shadow: 0 0 5px rgba(255, 235, 59, 0.7);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        /* Кнопки */
+        .click-button {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ff6b6b, #ff8e8e);
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .click-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.7);
+        }
+
+        .click-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .click-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .click-button:hover::before {
+            opacity: 1;
+        }
+
+        .action-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin: 5px;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Статистика */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Анимации */
+        .pulse {
+            animation: pulse 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            }
+        }
+
+        .floating {
+            position: absolute;
+            animation: float 3s ease-in-out forwards;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 100;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Достижения */
+        .achievement {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .achievement.show {
+            opacity: 1;
+        }
+
+        .achievement-list {
+            margin-top: 20px;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            width: 50px;
+            text-align: center;
+        }
+
+        .achievement-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .achievement-locked {
+            opacity: 0.5;
+        }
+
+        /* Магазин */
+        .shop-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .shop-category {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px 10px;
+        }
+
+        .shop-category.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .shop-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .shop-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .shop-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shop-item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .shop-item-price {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+
+        .shop-item-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .shop-item-button {
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .shop-item-button:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .shop-item-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Настройки */
+        .settings-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .settings-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .settings-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(45deg);
+        }
+
+        .settings-group {
+            margin-bottom: 20px;
+        }
+
+        .settings-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .settings-slider {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Прогресс бар */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Система входа */
+        .login-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .login-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .login-button {
+            flex: 1;
+            padding: 12px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Частицы */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .counter {
+                font-size: 2.5rem;
+            }
+
+            .click-button {
+                width: 140px;
+                height: 140px;
+                font-size: 1.4rem;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .message {
+                font-size: 1.2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .action-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Модальное окно входа -->
+    <div class="modal" id="loginModal">
+        <div class="login-container">
+            <h2 class="login-title">Агния27</h2>
+            <input type="password" class="login-input" id="playerIdInput" placeholder="Введите ваш ID">
+            <div class="login-buttons">
+                <button class="login-button" id="loginButton">Войти</button>
+                <button class="login-button" id="registerButton">Регистрация</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной контейнер игры (изначально скрыт) -->
+    <div class="container" id="gameContainer" style="display: none;">
+        <div class="settings-panel">
+            <div class="settings-btn" id="settingsBtn">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+
+        <h1 class="title">Агния27</h1>
+        <div class="counter" id="counter">0</div>
+        <button class="click-button" id="clickButton">КЛИК</button>
+        <div class="message" id="message">Нажми на кнопку!</div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="clicksPerSecond">0</div>
+                <div class="stat-label">Кликов/сек</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="maxCPS">0</div>
+                <div class="stat-label">Макс. CPS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalClicks">0</div>
+                <div class="stat-label">Всего кликов</div>
+            </div>
+        </div>
+
+        <div>
+            <button class="action-button" id="shopButton"><i class="fas fa-store"></i> Магазин</button>
+            <button class="action-button" id="achievementsButton"><i class="fas fa-trophy"></i> Достижения</button>
+        </div>
+
+        <div class="theme-selector">
+            <button class="action-button" data-theme="default">Стандартная</button>
+            <button class="action-button" data-theme="dark">Темная</button>
+            <button class="action-button" data-theme="pink">Розовая</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно магазина -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeShop">&times;</button>
+            <h2>Магазин улучшений</h2>
+            <div class="shop-categories">
+                <div class="shop-category active" data-category="click">Улучшения клика</div>
+                <div class="shop-category" data-category="auto">Автокликеры</div>
+                <div class="shop-category" data-category="boost">Бусты</div>
+                <div class="shop-category" data-category="cosmetic">Косметика</div>
+            </div>
+            <div class="shop-items" id="shopItems">
+                <!-- Товары будут добавляться через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно достижений -->
+    <div class="modal" id="achievementsModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeAchievements">&times;</button>
+            <h2>Достижения</h2>
+            <div class="achievement-list" id="achievementList">
+                <!-- Достижения будут добавляться через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно настроек -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeSettings">&times;</button>
+            <h2>Настройки</h2>
+            
+            <div class="settings-group">
+                <label class="settings-label">Громкость музыки</label>
+                <input type="range" class="settings-slider" id="musicVolume" min="0" max="100" value="50">
+                <div class="settings-value" id="musicVolumeValue">50%</div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-label">Громкость эффектов</label>
+                <input type="range" class="settings-slider" id="sfxVolume" min="0" max="100" value="70">
+                <div class="settings-value" id="sfxVolumeValue">70%</div>
+            </div>
+            
+            <div class="settings-group">
+                <button class="action-button" id="toggleMusic">Выключить музыку</button>
+                <button class="action-button" id="toggleSfx">Выключить эффекты</button>
+            </div>
+
+            <div class="settings-group">
+                <button class="action-button" id="exportSave">Экспорт сохранения</button>
+                <button class="action-button" id="importSave">Импорт сохранения</button>
+            </div>
+
+            <div class="settings-group">
+                <button class="action-button" id="resetGame">Сбросить игру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомление о достижении -->
+    <div class="achievement" id="achievement">Достижение разблокировано!</div>
+
+    <!-- Аудио элементы -->
+    <audio id="backgroundMusic" loop>
+        <source src="sounds/background.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="sounds/click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="upgradeSound">
+        <source src="sounds/upgrade.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="achievementSound">
+        <source src="sounds/achievement.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="errorSound">
+        <source src="sounds/error.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ===== ОСНОВНЫЕ ПЕРЕМЕННЫЕ ИГРЫ =====
+        let count = 0;
+        let totalClicks = 0;
+        let clicksInLastSecond = 0;
+        let maxCPS = 0;
+        let clickPower = 1;
+        let multiplier = 1;
+        let autoClickerLevel = 0;
+        let autoClickerInterval;
+        let cpsInterval;
+        let playerId = null;
+        let musicVolume = 0.5;
+        let sfxVolume = 0.7;
+        let musicEnabled = true;
+        let sfxEnabled = true;
+
+        // Элементы DOM
+        const counterElement = document.getElementById('counter');
+        const clickButton = document.getElementById('clickButton');
+        const messageElement = document.getElementById('message');
+        const cpsElement = document.getElementById('clicksPerSecond');
+        const maxCPSElement = document.getElementById('maxCPS');
+        const totalClicksElement = document.getElementById('totalClicks');
+        const achievementElement = document.getElementById('achievement');
+        const progressElement = document.getElementById('progress');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const gameContainer = document.getElementById('gameContainer');
+        const loginModal = document.getElementById('loginModal');
+        const playerIdInput = document.getElementById('playerIdInput');
+        const loginButton = document.getElementById('loginButton');
+        const registerButton = document.getElementById('registerButton');
+        const shopButton = document.getElementById('shopButton');
+        const shopModal = document.getElementById('shopModal');
+        const closeShop = document.getElementById('closeShop');
+        const shopItems = document.getElementById('shopItems');
+        const achievementsButton = document.getElementById('achievementsButton');
+        const achievementsModal = document.getElementById('achievementsModal');
+        const closeAchievements = document.getElementById('closeAchievements');
+        const achievementList = document.getElementById('achievementList');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeSettings = document.getElementById('closeSettings');
+        const musicVolumeSlider = document.getElementById('musicVolume');
+        const musicVolumeValue = document.getElementById('musicVolumeValue');
+        const sfxVolumeSlider = document.getElementById('sfxVolume');
+        const sfxVolumeValue = document.getElementById('sfxVolumeValue');
+        const toggleMusicBtn = document.getElementById('toggleMusic');
+        const toggleSfxBtn = document.getElementById('toggleSfx');
+        const exportSaveBtn = document.getElementById('exportSave');
+        const importSaveBtn = document.getElementById('importSave');
+        const resetGameBtn = document.getElementById('resetGame');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const clickSound = document.getElementById('clickSound');
+        const upgradeSound = document.getElementById('upgradeSound');
+        const achievementSound = document.getElementById('achievementSound');
+        const errorSound = document.getElementById('errorSound');
+
+        // Сообщения, которые будут появляться при клике
+        const messages = ["Агния", "27", "Агния27", "Агния, Агния!", "27 Агния", "Агния 27 27", "27 27 27!"];
+
+        // Система достижений
+        const achievements = [
+            { id: 'first_27', count: 27, title: 'Первые 27 кликов!', desc: 'Наберите 27 кликов', icon: '🥇', unlocked: false },
+            { id: 'hundred', count: 100, title: '100 кликов!', desc: 'Наберите 100 кликов', icon: '🏆', unlocked: false },
+            { id: 'five_hundred', count: 500, title: '500 кликов! Мастер клика!', desc: 'Наберите 500 кликов', icon: '👑', unlocked: false },
+            { id: 'thousand', count: 1000, title: '1000 кликов! Легенда!', desc: 'Наберите 1000 кликов', icon: '🔥', unlocked: false },
+            { id: 'speed_5', cps: 5, title: 'Скорость 5 кликов/сек!', desc: 'Достигните скорости 5 кликов в секунду', icon: '⚡', unlocked: false },
+            { id: 'speed_10', cps: 10, title: 'Невероятная скорость 10 кликов/сек!', desc: 'Достигните скорости 10 кликов в секунду', icon: '🚀', unlocked: false },
+            { id: 'first_upgrade', upgrade: true, title: 'Первое улучшение!', desc: 'Купите первое улучшение', icon: '⭐', unlocked: false },
+            { id: 'auto_clicker', auto: true, title: 'Автоматизация!', desc: 'Купите первый автокликер', icon: '🤖', unlocked: false }
+        ];
+
+        // Система магазина
+        const shopItemsData = {
+            click: [
+                { id: 'click_power_1', name: 'Усилитель клика I', desc: 'Увеличивает силу клика на +1', price: 30, effect: () => { clickPower += 1; } },
+                { id: 'click_power_2', name: 'Усилитель клика II', desc: 'Увеличивает силу клика на +2', price: 80, effect: () => { clickPower += 2; }, require: 'click_power_1' },
+                { id: 'click_power_3', name: 'Усилитель клика III', desc: 'Увеличивает силу клика на +3', price: 150, effect: () => { clickPower += 3; }, require: 'click_power_2' },
+                { id: 'multiplier_1', name: 'Множитель x2', desc: 'Удваивает количество кликов', price: 100, effect: () => { multiplier *= 2; } },
+                { id: 'multiplier_2', name: 'Множитель x3', desc: 'Утраивает количество кликов', price: 300, effect: () => { multiplier *= 3; }, require: 'multiplier_1' }
+            ],
+            auto: [
+                { id: 'auto_clicker_1', name: 'Автокликер I', desc: 'Автоматически кликает 1 раз в секунду', price: 50, effect: () => { autoClickerLevel += 1; initAutoClicker(); } },
+                { id: 'auto_clicker_2', name: 'Автокликер II', desc: 'Автоматически кликает 2 раза в секунду', price: 120, effect: () => { autoClickerLevel += 2; initAutoClicker(); }, require: 'auto_clicker_1' },
+                { id: 'auto_clicker_3', name: 'Автокликер III', desc: 'Автоматически кликает 5 раз в секунду', price: 300, effect: () => { autoClickerLevel += 5; initAutoClicker(); }, require: 'auto_clicker_2' }
+            ],
+            boost: [
+                { id: 'boost_10s', name: 'Буст на 10 секунд', desc: 'Удваивает клики на 10 секунд', price: 70, effect: () => { activateBoost(2, 10); } },
+                { id: 'boost_30s', name: 'Буст на 30 секунд', desc: 'Утраивает клики на 30 секунд', price: 200, effect: () => { activateBoost(3, 30); }, require: 'boost_10s' }
+            ],
+            cosmetic: [
+                { id: 'golden_theme', name: 'Золотая тема', desc: 'Разблокирует золотую тему оформления', price: 500, effect: () => { unlockTheme('gold'); } },
+                { id: 'rainbow_theme', name: 'Радужная тема', desc: 'Разблокирует радужную тему оформления', price: 1000, effect: () => { unlockTheme('rainbow'); }, require: 'golden_theme' }
+            ]
+        };
+
+        // Купленные товары
+        const purchasedItems = [];
+
+        // ===== ФУНКЦИИ АУДИО =====
+        // Предзагрузка аудио файлов
+        function preloadAudio() {
+            const audioElements = [backgroundMusic, clickSound, upgradeSound, achievementSound, errorSound];
+            audioElements.forEach(audio => {
+                audio.volume = 0;
+                audio.play().then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }).catch(() => {});
+            });
+        }
+
+        // Воспроизведение звука
+        function playSound(sound, volume = null) {
+            if (!sfxEnabled) return;
+            
+            const audio = sound.cloneNode();
+            audio.volume = volume !== null ? volume : sfxVolume;
+            audio.play().catch(() => {});
+        }
+
+        // Обновление громкости музыки
+        function updateMusicVolume() {
+            if (backgroundMusic) {
+                backgroundMusic.volume = musicEnabled ? musicVolume : 0;
+            }
+        }
+
+        // ===== СИСТЕМА СОХРАНЕНИЙ =====
+        // Сохранение игры
+        function saveGame() {
+            if (!playerId) return;
+            
+            const gameData = {
+                count,
+                totalClicks,
+                maxCPS,
+                clickPower,
+                multiplier,
+                autoClickerLevel,
+                purchasedItems,
+                achievements: achievements.map(a => a.unlocked),
+                musicVolume,
+                sfxVolume,
+                musicEnabled,
+                sfxEnabled
+            };
+            
+            localStorage.setItem(`agnia27_save_${playerId}`, JSON.stringify(gameData));
+        }
+
+        // Загрузка игры
+        function loadGame() {
+            if (!playerId) return false;
+            
+            const savedData = localStorage.getItem(`agnia27_save_${playerId}`);
+            if (!savedData) return false;
+            
+            try {
+                const gameData = JSON.parse(savedData);
+                
+                count = gameData.count || 0;
+                totalClicks = gameData.totalClicks || 0;
+                maxCPS = gameData.maxCPS || 0;
+                clickPower = gameData.clickPower || 1;
+                multiplier = gameData.multiplier || 1;
+                autoClickerLevel = gameData.autoClickerLevel || 0;
+                purchasedItems.length = 0;
+                
+                if (gameData.purchasedItems && Array.isArray(gameData.purchasedItems)) {
+                    purchasedItems.push(...gameData.purchasedItems);
+                }
+                
+                if (gameData.achievements && Array.isArray(gameData.achievements)) {
+                    gameData.achievements.forEach((unlocked, index) => {
+                        if (index < achievements.length) {
+                            achievements[index].unlocked = unlocked;
+                        }
+                    });
+                }
+                
+                musicVolume = gameData.musicVolume !== undefined ? gameData.musicVolume : 0.5;
+                sfxVolume = gameData.sfxVolume !== undefined ? gameData.sfxVolume : 0.7;
+                musicEnabled = gameData.musicEnabled !== undefined ? gameData.musicEnabled : true;
+                sfxEnabled = gameData.sfxEnabled !== undefined ? gameData.sfxEnabled : true;
+                
+                updateUI();
+                initAutoClicker();
+                updateMusicVolume();
+                
+                return true;
+            } catch (e) {
+                console.error("Ошибка загрузки сохранения:", e);
+                return false;
+            }
+        }
+
+        // Экспорт сохранения
+        function exportSave() {
+            if (!playerId) return;
+            
+            const gameData = {
+                count,
+                totalClicks,
+                maxCPS,
+                clickPower,
+                multiplier,
+                autoClickerLevel,
+                purchasedItems,
+                achievements: achievements.map(a => a.unlocked),
+                playerId
+            };
+            
+            const dataStr = JSON.stringify(gameData);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `agnia27_save_${playerId}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
+        // Импорт сохранения
+        function importSave() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const gameData = JSON.parse(e.target.result);
+                        
+                        if (gameData.playerId && gameData.playerId !== playerId) {
+                            alert("Это сохранение принадлежит другому игроку!");
+                            return;
+                        }
+                        
+                        count = gameData.count || 0;
+                        totalClicks = gameData.totalClicks || 0;
+                        maxCPS = gameData.maxCPS || 0;
+                        clickPower = gameData.clickPower || 1;
+                        multiplier = gameData.multiplier || 1;
+                        autoClickerLevel = gameData.autoClickerLevel || 0;
+                        purchasedItems.length = 0;
+                        
+                        if (gameData.purchasedItems && Array.isArray(gameData.purchasedItems)) {
+                            purchasedItems.push(...gameData.purchasedItems);
+                        }
+                        
+                        if (gameData.achievements && Array.isArray(gameData.achievements)) {
+                            gameData.achievements.forEach((unlocked, index) => {
+                                if (index < achievements.length) {
+                                    achievements[index].unlocked = unlocked;
+                                }
+                            });
+                        }
+                        
+                        updateUI();
+                        initAutoClicker();
+                        saveGame();
+                        
+                        alert("Сохранение успешно импортировано!");
+                    } catch (e) {
+                        alert("Ошибка при импорте сохранения: неверный формат файла");
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // Сброс игры
+        function resetGame() {
+            if (!confirm("Вы уверены, что хотите сбросить весь прогресс? Это действие нельзя отменить.")) return;
+            
+            count = 0;
+            totalClicks = 0;
+            maxCPS = 0;
+            clickPower = 1;
+            multiplier = 1;
+            autoClickerLevel = 0;
+            purchasedItems.length = 0;
+            
+            achievements.forEach(a => a.unlocked = false);
+            
+            updateUI();
+            initAutoClicker();
+            saveGame();
+            
+            alert("Игра сброшена!");
+        }
+
+        // ===== СИСТЕМА АВТОКЛИКЕРА =====
+        // Инициализация автокликера
+        function initAutoClicker() {
+            clearInterval(autoClickerInterval);
+            
+            if (autoClickerLevel > 0) {
+                autoClickerInterval = setInterval(() => {
+                    addClicks(autoClickerLevel);
+                }, 1000);
+            }
+        }
+
+        // ===== СИСТЕМА ДОСТИЖЕНИЙ =====
+        // Проверка достижений
+        function checkAchievements() {
+            achievements.forEach(achievement => {
+                if (achievement.unlocked) return;
+                
+                let unlocked = false;
+                
+                if (achievement.count !== undefined && count >= achievement.count) {
+                    unlocked = true;
+                }
+                
+                if (achievement.cps !== undefined && maxCPS >= achievement.cps) {
+                    unlocked = true;
+                }
+                
+                if (achievement.upgrade && purchasedItems.length > 0) {
+                    unlocked = true;
+                }
+                
+                if (achievement.auto && autoClickerLevel > 0) {
+                    unlocked = true;
+                }
+                
+                if (unlocked) {
+                    achievement.unlocked = true;
+                    showAchievement(achievement);
+                    saveGame();
+                }
+            });
+        }
+
+        // Показ уведомления о достижении
+        function showAchievement(achievement) {
+            achievementElement.textContent = `Достижение: ${achievement.title}`;
+            achievementElement.classList.add('show');
+            playSound(achievementSound);
+            
+            setTimeout(() => {
+                achievementElement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Обновление списка достижений
+        function updateAchievementsList() {
+            achievementList.innerHTML = '';
+            
+            achievements.forEach(achievement => {
+                const achievementEl = document.createElement('div');
+                achievementEl.className = `achievement-item ${achievement.unlocked ? '' : 'achievement-locked'}`;
+                
+                achievementEl.innerHTML = `
+                    <div class="achievement-icon">${achievement.unlocked ? achievement.icon : '🔒'}</div>
+                    <div class="achievement-info">
+                        <div class="achievement-title">${achievement.title}</div>
+                        <div class="achievement-desc">${achievement.desc}</div>
+                    </div>
+                `;
+                
+                achievementList.appendChild(achievementEl);
+            });
+        }
+
+        // ===== СИСТЕМА МАГАЗИНА =====
+        // Покупка товара
+        function buyItem(item) {
+            if (purchasedItems.includes(item.id)) {
+                showMessage("У вас уже есть этот предмет!", "error");
+                playSound(errorSound);
+                return;
+            }
+            
+            if (count < item.price) {
+                showMessage("Недостаточно кликов!", "error");
+                playSound(errorSound);
+                return;
+            }
+            
+            // Проверка требований
+            if (item.require && !purchasedItems.includes(item.require)) {
+                showMessage("Сначала купите требуемое улучшение!", "error");
+                playSound(errorSound);
+                return;
+            }
+            
+            count -= item.price;
+            purchasedItems.push(item.id);
+            item.effect();
+            
+            showMessage(`Куплено: ${item.name}`, "success");
+            playSound(upgradeSound);
+            
+            updateUI();
+            saveGame();
+            checkAchievements();
+        }
+
+        // Обновление магазина
+        function updateShop(category = 'click') {
+            shopItems.innerHTML = '';
+            
+            if (!shopItemsData[category]) return;
+            
+            shopItemsData[category].forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'shop-item';
+                
+                const canAfford = count >= item.price;
+                const hasRequirement = !item.require || purchasedItems.includes(item.require);
+                const alreadyPurchased = purchasedItems.includes(item.id);
+                
+                itemEl.innerHTML = `
+                    <div class="shop-item-header">
+                        <div class="shop-item-title">${item.name}</div>
+                        <div class="shop-item-price">${item.price}</div>
+                    </div>
+                    <div class="shop-item-desc">${item.desc}</div>
+                    <button class="shop-item-button" ${!canAfford || !hasRequirement || alreadyPurchased ? 'disabled' : ''}>
+                        ${alreadyPurchased ? 'Куплено' : (canAfford ? 'Купить' : 'Недостаточно')}
+                    </button>
+                `;
+                
+                const button = itemEl.querySelector('button');
+                if (!alreadyPurchased && canAfford && hasRequirement) {
+                    button.addEventListener('click', () => buyItem(item));
+                }
+                
+                shopItems.appendChild(itemEl);
+            });
+        }
+
+        // Активация буста
+        function activateBoost(boostMultiplier, duration) {
+            const originalMultiplier = multiplier;
+            multiplier *= boostMultiplier;
+            
+            showMessage(`Буст активирован! x${boostMultiplier} на ${duration} сек.`, "success");
+            
+            setTimeout(() => {
+                multiplier = originalMultiplier;
+                showMessage("Буст закончился!", "info");
+            }, duration * 1000);
+        }
+
+        // Разблокировка темы
+        function unlockTheme(theme) {
+            document.body.className = '';
+            document.body.classList.add(`theme-${theme}`);
+            showMessage(`Тема "${theme}" разблокирована!`, "success");
+        }
+
+        // ===== ВИЗУАЛЬНЫЕ ЭФФЕКТЫ =====
+        // Создание частиц
+        function createParticles(x, y, count, color = 'rgba(255, 255, 255, 0.7)') {
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.background = color;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 50 + 30;
+                const duration = Math.random() * 1 + 0.5;
+                
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                document.body.appendChild(particle);
+                
+                const deltaX = Math.cos(angle) * distance;
+                const deltaY = Math.sin(angle) * distance;
+                
+                particle.animate([
+                    { transform: `translate(0, 0) scale(1)`, opacity: 1 },
+                    { transform: `translate(${deltaX}px, ${deltaY}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'ease-out'
+                });
+                
+                setTimeout(() => {
+                    document.body.removeChild(particle);
+                }, duration * 1000);
+            }
+        }
+
+        // Создание плавающего текста
+        function createFloatingText(text, x, y, color = '#ffffff') {
+            const floatingText = document.createElement('div');
+            floatingText.className = 'floating';
+            floatingText.textContent = text;
+            floatingText.style.color = color;
+            floatingText.style.left = `${x}px`;
+            floatingText.style.top = `${y}px`;
+            
+            document.body.appendChild(floatingText);
+            
+            setTimeout(() => {
+                document.body.removeChild(floatingText);
+            }, 3000);
+        }
+
+        // Показ сообщения
+        function showMessage(text, type = 'info') {
+            messageElement.textContent = text;
+            
+            switch(type) {
+                case 'error':
+                    messageElement.style.color = '#ff5252';
+                    break;
+                case 'success':
+                    messageElement.style.color = '#4caf50';
+                    break;
+                default:
+                    messageElement.style.color = '#ffeb3b';
+            }
+            
+            messageElement.classList.add('pulse');
+            setTimeout(() => {
+                messageElement.classList.remove('pulse');
+            }, 500);
+        }
+
+        // ===== ОСНОВНАЯ ЛОГИКА ИГРЫ =====
+        // Добавление кликов
+        function addClicks(amount) {
+            const actualAmount = amount * clickPower * multiplier;
+            count += actualAmount;
+            totalClicks += amount;
+            clicksInLastSecond += amount;
+            
+            updateUI();
+            saveGame();
+            checkAchievements();
+        }
+
+        // Обновление интерфейса
+        function updateUI() {
+            counterElement.textContent = Math.floor(count);
+            totalClicksElement.textContent = totalClicks;
+            cpsElement.textContent = clicksInLastSecond;
+            maxCPSElement.textContent = maxCPS;
+            
+            // Обновление прогресс-бара (для следующего достижения)
+            const nextAchievement = achievements.find(a => !a.unlocked && a.count);
+            if (nextAchievement) {
+                const progress = (count / nextAchievement.count) * 100;
+                progressElement.style.width = `${Math.min(progress, 100)}%`;
+            } else {
+                progressElement.style.width = '100%';
+            }
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ ИГРЫ =====
+        function initGame() {
+            // Предзагрузка аудио
+            preloadAudio();
+            
+            // Запуск фоновой музыки
+            updateMusicVolume();
+            if (musicEnabled) {
+                backgroundMusic.play().catch(() => {});
+            }
+            
+            // Инициализация интервалов
+            setInterval(() => {
+                if (clicksInLastSecond > maxCPS) {
+                    maxCPS = clicksInLastSecond;
+                }
+                clicksInLastSecond = 0;
+                updateUI();
+            }, 1000);
+            
+            // Обработчик клика по кнопке
+            clickButton.addEventListener('click', (e) => {
+                addClicks(1);
+                clickButton.classList.add('pulse');
+                setTimeout(() => clickButton.classList.remove('pulse'), 300);
+                
+                // Случайное сообщение
+                if (Math.random() < 0.3) {
+                    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                    showMessage(randomMessage);
+                }
+                
+                // Визуальные эффекты
+                const rect = clickButton.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                createParticles(x, y, 10);
+                createFloatingText(`+${Math.floor(clickPower * multiplier)}`, x, y, '#ffeb3b');
+                
+                // Звук клика
+                playSound(clickSound);
+            });
+            
+            // Обработчики кнопок
+            shopButton.addEventListener('click', () => {
+                shopModal.classList.add('active');
+                updateShop();
+            });
+            
+            closeShop.addEventListener('click', () => {
+                shopModal.classList.remove('active');
+            });
+            
+            achievementsButton.addEventListener('click', () => {
+                achievementsModal.classList.add('active');
+                updateAchievementsList();
+            });
+            
+            closeAchievements.addEventListener('click', () => {
+                achievementsModal.classList.remove('active');
+            });
+            
+            settingsBtn.addEventListener('click', () => {
+                settingsModal.classList.add('active');
+            });
+            
+            closeSettings.addEventListener('click', () => {
+                settingsModal.classList.remove('active');
+            });
+            
+            // Обработчики настроек звука
+            musicVolumeSlider.addEventListener('input', () => {
+                musicVolume = musicVolumeSlider.value / 100;
+                musicVolumeValue.textContent = `${musicVolumeSlider.value}%`;
+                updateMusicVolume();
+                saveGame();
+            });
+            
+            sfxVolumeSlider.addEventListener('input', () => {
+                sfxVolume = sfxVolumeSlider.value / 100;
+                sfxVolumeValue.textContent = `${sfxVolumeSlider.value}%`;
+                saveGame();
+            });
+            
+            toggleMusicBtn.addEventListener('click', () => {
+                musicEnabled = !musicEnabled;
+                toggleMusicBtn.textContent = musicEnabled ? 'Выключить музыку' : 'Включить музыку';
+                updateMusicVolume();
+                saveGame();
+            });
+            
+            toggleSfxBtn.addEventListener('click', () => {
+                sfxEnabled = !sfxEnabled;
+                toggleSfxBtn.textContent = sfxEnabled ? 'Выключить эффекты' : 'Включить эффекты';
+                saveGame();
+            });
+            
+            exportSaveBtn.addEventListener('click', exportSave);
+            importSaveBtn.addEventListener('click', importSave);
+            resetGameBtn.addEventListener('click', resetGame);
+            
+            // Обработчики категорий магазина
+            document.querySelectorAll('.shop-category').forEach(category => {
+                category.addEventListener('click', () => {
+                    document.querySelectorAll('.shop-category').forEach(c => c.classList.remove('active'));
+                    category.classList.add('active');
+                    updateShop(category.dataset.category);
+                });
+            });
+            
+            // Обработчики смены темы
+            document.querySelectorAll('.theme-selector .action-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const theme = button.dataset.theme;
+                    document.body.className = '';
+                    if (theme !== 'default') {
+                        document.body.classList.add(`theme-${theme}`);
+                    }
+                });
+            });
+            
+            // Автосохранение каждые 30 секунд
+            setInterval(saveGame, 30000);
+            
+            // Инициализация автокликера
+            initAutoClicker();
+            
+            // Первоначальное обновление интерфейса
+            updateUI();
+        }
+
+        // ===== СИСТЕМА АУТЕНТИФИКАЦИИ =====
+        function initAuth() {
+            // Проверка, есть ли сохраненный ID игрока
+            const savedPlayerId = localStorage.getItem('agnia27_current_player');
+            if (savedPlayerId) {
+                playerId = savedPlayerId;
+                if (loadGame()) {
+                    loginModal.classList.remove('active');
+                    gameContainer.style.display = 'block';
+                    initGame();
+                    return;
+                }
+            }
+            
+            // Показать модальное окно входа
+            loginModal.classList.add('active');
+            
+            // Обработчики кнопок входа и регистрации
+            loginButton.addEventListener('click', () => {
+                const id = playerIdInput.value.trim();
+                if (!id) {
+                    alert("Введите ваш ID!");
+                    return;
+                }
+                
+                playerId = id;
+                localStorage.setItem('agnia27_current_player', id);
+                
+                if (loadGame()) {
+                    loginModal.classList.remove('active');
+                    gameContainer.style.display = 'block';
+                    initGame();
+                } else {
+                    alert("Сохранение для этого ID не найдено!");
+                }
+            });
+            
+            registerButton.addEventListener('click', () => {
+                const id = playerIdInput.value.trim();
+                if (!id) {
+                    alert("Введите ваш ID!");
+                    return;
+                }
+                
+                // Проверка, существует ли уже такой ID
+                if (localStorage.getItem(`agnia27_save_${id}`)) {
+                    alert("Этот ID уже занят!");
+                    return;
+                }
+                
+                playerId = id;
+                localStorage.setItem('agnia27_current_player', id);
+                
+                loginModal.classList.remove('active');
+                gameContainer.style.display = 'block';
+                
+                // Создание нового сохранения
+                saveGame();
+                initGame();
+                
+                alert("Новый аккаунт создан! Ваш ID: " + id);
+            });
+        }
+
+        // Запуск системы аутентификации при загрузке страницы
+        window.addEventListener('DOMContentLoaded', initAuth);
+    </script>
+</body>
+</html>
