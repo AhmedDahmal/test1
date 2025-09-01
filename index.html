@@ -26,20 +26,20 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--tg-theme-bg-color, #6a11cb) 0%, var(--tg-theme-link-color, #2575fc) 100%);
+            background: linear-gradient(135deg, var(--tg-theme-bg-color) 0%, var(--tg-theme-link-color) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: var(--tg-theme-text-color, #ffffff);
+            color: var(--tg-theme-text-color);
             overflow-x: hidden;
-            transition: background 0.3s ease;
+            transition: background 0.5s ease;
         }
 
         .container {
             text-align: center;
-            background: var(--tg-theme-secondary-bg-color, rgba(255, 255, 255, 0.1));
+            background: var(--tg-theme-secondary-bg-color);
             backdrop-filter: blur(12px);
             padding: 40px;
             border-radius: 25px;
@@ -67,7 +67,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 3rem;
             font-weight: 900;
-            color: var(--tg-theme-text-color, #ffffff);
+            color: var(--tg-theme-text-color);
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
             margin-bottom: 30px;
             letter-spacing: 2px;
@@ -85,9 +85,31 @@
             }
         }
 
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .user-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
         .counter {
             font-size: 3rem;
-            color: var(--tg-theme-text-color, #ffffff);
+            color: var(--tg-theme-text-color);
             margin: 30px 0;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             font-weight: 500;
@@ -98,9 +120,9 @@
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            background: linear-gradient(145deg, var(--tg-theme-button-color, #ff6b6b), #ff8e8e);
+            background: linear-gradient(145deg, var(--tg-theme-button-color), #ff8e8e);
             border: none;
-            color: var(--tg-theme-button-text-color, #ffffff);
+            color: var(--tg-theme-button-text-color);
             font-size: 1.6rem;
             font-weight: bold;
             cursor: pointer;
@@ -208,7 +230,7 @@
             }
         }
 
-        .achievement {
+        .achievement-notification {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -224,7 +246,7 @@
             z-index: 1000;
         }
 
-        .achievement.show {
+        .achievement-notification.show {
             opacity: 1;
         }
 
@@ -319,7 +341,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(to right, var(--tg-theme-button-color, #ff6b6b), #ff8e8e);
+            background: linear-gradient(to right, var(--tg-theme-button-color), #ff8e8e);
             border-radius: 5px;
             width: 0%;
             transition: width 0.5s ease;
@@ -336,7 +358,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -348,7 +370,7 @@
         }
 
         .modal-content {
-            background: var(--tg-theme-secondary-bg-color, rgba(30, 30, 30, 0.9));
+            background: var(--tg-theme-secondary-bg-color);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 30px;
@@ -356,8 +378,8 @@
             max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
         }
 
@@ -367,7 +389,7 @@
             right: 15px;
             background: none;
             border: none;
-            color: var(--tg-theme-text-color, #ffffff);
+            color: var(--tg-theme-text-color);
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -377,61 +399,48 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             text-align: center;
-            color: var(--tg-theme-text-color, #ffffff);
         }
 
         .settings-section {
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .settings-section:last-child {
-            border-bottom: none;
-        }
-
-        .settings-label {
-            display: block;
+        .settings-section h3 {
             margin-bottom: 10px;
-            font-weight: 500;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
         }
 
-        .settings-slider {
-            width: 100%;
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 10px 0;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
         }
 
-        .user-avatar {
-            width: 60px;
-            height: 60px;
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
+            background: var(--tg-theme-button-color);
+            cursor: pointer;
         }
 
-        .user-details {
-            text-align: left;
-        }
-
-        .user-name {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .user-id {
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        .achievements-grid {
+        .achievement-list {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -452,6 +461,7 @@
         .achievement-icon {
             font-size: 2rem;
             margin-bottom: 10px;
+            color: #ffeb3b;
         }
 
         .achievement-title {
@@ -481,12 +491,12 @@
         }
 
         .shop-category.active {
-            background: var(--tg-theme-button-color, #ff6b6b);
+            background: var(--tg-theme-button-color);
         }
 
         .shop-items {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
         }
 
@@ -498,57 +508,148 @@
             transition: all 0.3s ease;
         }
 
-        .shop-item:disabled {
+        .shop-item:not(.disabled):hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .shop-item.disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        .shop-item-title {
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
         .shop-item-price {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ffeb3b;
+            margin-top: 10px;
         }
 
         .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid var(--tg-theme-button-color);
+        }
+
+        .tab-content {
             display: none;
         }
 
-        .tab-container.active {
+        .tab-content.active {
             display: block;
         }
 
-        .tab-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tab-button {
+        .reset-btn {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 10px;
             padding: 10px 15px;
-            background: none;
-            border: none;
-            color: var(--tg-theme-text-color, #ffffff);
+            color: white;
             cursor: pointer;
-            font-weight: 500;
-            opacity: 0.7;
             transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
+            margin-top: 20px;
+            width: 100%;
         }
 
-        .tab-button.active {
-            opacity: 1;
-            border-bottom: 2px solid var(--tg-theme-button-color, #ff6b6b);
+        .reset-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+        }
+
+        .confirmation-dialog {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .confirmation-btn {
+            padding: 8px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .confirmation-btn.confirm {
+            background: var(--tg-theme-button-color);
+            color: white;
+        }
+
+        .confirmation-btn.cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sound-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--tg-theme-button-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
         }
 
         .particle {
             position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
             pointer-events: none;
             z-index: 10;
         }
@@ -559,11 +660,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--tg-theme-bg-color, #6a11cb);
+            background: var(--tg-theme-bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 2000;
             transition: opacity 0.5s ease;
         }
 
@@ -572,7 +673,7 @@
             height: 50px;
             border: 5px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            border-top: 5px solid var(--tg-theme-button-color, #ff6b6b);
+            border-top: 5px solid var(--tg-theme-button-color);
             animation: spin 1s linear infinite;
         }
 
@@ -583,7 +684,7 @@
 
         @media (max-width: 600px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             .counter {
@@ -609,8 +710,12 @@
                 gap: 15px;
             }
 
-            .achievements-grid, .shop-items {
-                grid-template-columns: 1fr;
+            .modal-content {
+                padding: 20px;
+            }
+
+            .achievement-list, .shop-items {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
         }
     </style>
@@ -625,6 +730,11 @@
             <div class="settings-btn" id="settingsBtn">
                 <i class="fas fa-cog"></i>
             </div>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar" id="userAvatar"></div>
+            <div class="user-name" id="userName">Гость</div>
         </div>
 
         <h1 class="title">Агния27</h1>
@@ -661,103 +771,130 @@
             <button class="upgrade" id="upgradeClickPower">Сила клика +1 (30 кликов)</button>
         </div>
 
-        <div class="tab-buttons">
-            <button class="tab-button active" data-tab="main">Основное</button>
-            <button class="tab-button" data-tab="upgrades">Улучшения</button>
-            <button class="tab-button" data-tab="shop">Магазин</button>
-            <button class="tab-button" data-tab="achievements">Достижения</button>
-        </div>
-
-        <div class="tab-container active" id="tab-main">
-            <!-- Основной контент уже на странице -->
-        </div>
-
-        <div class="tab-container" id="tab-upgrades">
-            <div class="upgrades-grid">
-                <button class="upgrade" data-upgrade="multiplier">Умножитель x2 (100 кликов)</button>
-                <button class="upgrade" data-upgrade="clickPower">Сила клика +1 (30 кликов)</button>
-                <button class="upgrade" data-upgrade="autoClicker">Автокликер (50 кликов)</button>
-                <button class="upgrade" data-upgrade="criticalChance">Шанс крита +5% (200 кликов)</button>
-                <button class="upgrade" data-upgrade="criticalMultiplier">Множитель крита x2 (300 кликов)</button>
-            </div>
-        </div>
-
-        <div class="tab-container" id="tab-shop">
-            <div class="shop-categories">
-                <div class="shop-category active" data-category="boosters">Бусты</div>
-                <div class="shop-category" data-category="skins">Скины</div>
-                <div class="shop-category" data-category="special">Особые</div>
-            </div>
-            <div class="shop-items" id="shop-items">
-                <!-- Товары будут добавляться динамически -->
-            </div>
-        </div>
-
-        <div class="tab-container" id="tab-achievements">
-            <div class="achievements-grid" id="achievements-grid">
-                <!-- Достижения будут добавляться динамически -->
-            </div>
+        <div class="theme-selector">
+            <button class="theme-btn" data-theme="default">Стандартная</button>
+            <button class="theme-btn" data-theme="dark">Темная</button>
+            <button class="theme-btn" data-theme="pink">Розовая</button>
         </div>
     </div>
 
-    <div class="achievement" id="achievement">Достижение разблокировано!</div>
+    <div class="achievement-notification" id="achievementNotification">
+        <div class="achievement-message"></div>
+    </div>
 
     <!-- Модальное окно настроек -->
     <div class="modal" id="settingsModal">
         <div class="modal-content">
             <button class="modal-close" id="closeSettings">&times;</button>
             <h2 class="modal-title">Настройки</h2>
-
-            <div class="user-info">
-                <img src="" alt="Аватар" class="user-avatar" id="userAvatar">
-                <div class="user-details">
-                    <div class="user-name" id="userName">Пользователь</div>
-                    <div class="user-id" id="userId">ID: </div>
+            
+            <div class="tab-container">
+                <div class="tab active" data-tab="general">Основные</div>
+                <div class="tab" data-tab="audio">Звук</div>
+                <div class="tab" data-tab="achievements">Достижения</div>
+                <div class="tab" data-tab="shop">Магазин</div>
+            </div>
+            
+            <div class="tab-content active" id="general-tab">
+                <div class="settings-section">
+                    <h3>Информация о пользователе</h3>
+                    <div class="user-info">
+                        <div class="user-avatar" id="modalUserAvatar"></div>
+                        <div class="user-name" id="modalUserName">Гость</div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Статистика</h3>
+                    <div class="settings-option">
+                        <span>Всего кликов:</span>
+                        <span id="statsTotalClicks">0</span>
+                    </div>
+                    <div class="settings-option">
+                        <span>Макс. кликов/сек:</span>
+                        <span id="statsMaxCPS">0</span>
+                    </div>
+                    <div class="settings-option">
+                        <span>Сила клика:</span>
+                        <span id="statsClickPower">1</span>
+                    </div>
+                    <div class="settings-option">
+                        <span>Множитель:</span>
+                        <span id="statsMultiplier">1x</span>
+                    </div>
+                    <div class="settings-option">
+                        <span>Уровень автокликера:</span>
+                        <span id="statsAutoClicker">0</span>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Опасная зона</h3>
+                    <button class="reset-btn" id="resetProgressBtn">Сбросить прогресс</button>
+                    <div class="confirmation-dialog" id="resetConfirmation" style="display: none;">
+                        <p>Вы уверены? Это действие нельзя отменить.</p>
+                        <div class="confirmation-buttons">
+                            <button class="confirmation-btn confirm" id="confirmReset">Да</button>
+                            <button class="confirmation-btn cancel" id="cancelReset">Нет</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="settings-section">
-                <h3>Звук</h3>
-                <label class="settings-label">
-                    <input type="checkbox" id="soundEnabled" checked> Включить звуки
-                </label>
-                <label class="settings-label">
-                    <input type="checkbox" id="musicEnabled" checked> Фоновая музыка
-                </label>
-                <label class="settings-label">Громкость:</label>
-                <input type="range" min="0" max="100" value="80" class="settings-slider" id="volumeSlider">
-            </div>
-
-            <div class="settings-section">
-                <h3>Внешний вид</h3>
-                <label class="settings-label">
-                    <input type="checkbox" id="darkTheme"> Темная тема
-                </label>
-                <label class="settings-label">
-                    <input type="checkbox" id="particlesEnabled" checked> Частицы при кликах
-                </label>
-            </div>
-
-            <div class="settings-section">
-                <h3>Статистика</h3>
-                <div class="stat-item">
-                    <div class="stat-label">Всего кликов:</div>
-                    <div class="stat-value" id="statsTotalClicks">0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Макс. CPS:</div>
-                    <div class="stat-value" id="statsMaxCPS">0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Время игры:</div>
-                    <div class="stat-value" id="statsPlayTime">0:00</div>
+            
+            <div class="tab-content" id="audio-tab">
+                <div class="settings-section">
+                    <h3>Настройки звука</h3>
+                    <div class="settings-option">
+                        <span>Фоновая музыка</span>
+                        <label class="sound-toggle">
+                            <span class="toggle-switch">
+                                <input type="checkbox" id="musicToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <span>Громкость музыки</span>
+                        <input type="range" min="0" max="100" value="80" class="slider" id="musicVolume">
+                    </div>
+                    <div class="settings-option">
+                        <span>Звуковые эффекты</span>
+                        <label class="sound-toggle">
+                            <span class="toggle-switch">
+                                <input type="checkbox" id="sfxToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <span>Громкость эффектов</span>
+                        <input type="range" min="0" max="100" value="80" class="slider" id="sfxVolume">
+                    </div>
                 </div>
             </div>
-
-            <div class="settings-section">
-                <h3>Действия</h3>
-                <button class="upgrade" id="exportData">Экспорт данных</button>
-                <button class="upgrade" id="resetProgress">Сбросить прогресс</button>
+            
+            <div class="tab-content" id="achievements-tab">
+                <div class="settings-section">
+                    <h3>Достижения</h3>
+                    <div class="achievement-list" id="achievementsList">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="shop-tab">
+                <div class="settings-section">
+                    <h3>Магазин улучшений</h3>
+                    <div class="shop-categories">
+                        <div class="shop-category active" data-category="click">Улучшения клика</div>
+                        <div class="shop-category" data-category="auto">Автокликеры</div>
+                        <div class="shop-category" data-category="boost">Бусты</div>
+                        <div class="shop-category" data-category="cosmetic">Внешность</div>
+                    </div>
+                    <div class="shop-items" id="shopItems">
+                        <!-- Shop items will be populated by JavaScript -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -779,7 +916,7 @@
     <script>
         // Инициализация Telegram WebApp
         let tg = window.Telegram.WebApp;
-
+        
         // Основные переменные игры
         let count = 0;
         let totalClicks = 0;
@@ -788,838 +925,749 @@
         let clickPower = 1;
         let multiplier = 1;
         let autoClickerLevel = 0;
-        let criticalChance = 0;
-        let criticalMultiplier = 2;
-        let playTime = 0;
-        let cpsInterval;
         let autoClickerInterval;
-        let playTimeInterval;
-
-        // Настройки по умолчанию
-        let settings = {
-            sound: true,
-            music: true,
-            volume: 0.8,
-            darkTheme: false,
-            particles: true
-        };
-
+        let cpsInterval;
+        let userData = {};
+        let isInitialized = false;
+        
         // Достижения
-        let achievements = [
-            { id: 'first_27', count: 27, title: 'Первые 27 кликов!', description: 'Наберите 27 кликов', icon: '🥇', unlocked: false },
-            { id: 'hundred', count: 100, title: '100 кликов!', description: 'Наберите 100 кликов', icon: '🏆', unlocked: false },
-            { id: 'five_hundred', count: 500, title: '500 кликов! Мастер клика!', description: 'Наберите 500 кликов', icon: '👑', unlocked: false },
-            { id: 'speed_5', cps: 5, title: 'Скорость 5 кликов/сек!', description: 'Достигните скорости 5 кликов в секунду', icon: '⚡', unlocked: false },
-            { id: 'speed_10', cps: 10, title: 'Невероятная скорость 10 кликов/сек!', description: 'Достигните скорости 10 кликов в секунду', icon: '🚀', unlocked: false },
-            { id: 'first_upgrade', upgrade: true, title: 'Первое улучшение!', description: 'Купите первое улучшение', icon: '🛠️', unlocked: false },
-            { id: 'max_multiplier', multiplier: 10, title: 'Максимальный множитель!', description: 'Достигните множителя x10', icon: '✨', unlocked: false }
+        const achievements = [
+            { id: 'first_27', count: 27, title: 'Первые 27 кликов!', desc: 'Наберите 27 кликов', icon: 'fa-star', unlocked: false },
+            { id: 'hundred', count: 100, title: '100 кликов!', desc: 'Наберите 100 кликов', icon: 'fa-trophy', unlocked: false },
+            { id: 'five_hundred', count: 500, title: '500 кликов!', desc: 'Наберите 500 кликов', icon: 'fa-crown', unlocked: false },
+            { id: 'speed_5', cps: 5, title: 'Скорость 5 кликов/сек!', desc: 'Достигните скорости 5 кликов в секунду', icon: 'fa-bolt', unlocked: false },
+            { id: 'speed_10', cps: 10, title: 'Скорость 10 кликов/сек!', desc: 'Достигните скорости 10 кликов в секунду', icon: 'fa-rocket', unlocked: false },
+            { id: 'first_upgrade', title: 'Первое улучшение!', desc: 'Купите любое улучшение', icon: 'fa-arrow-up', unlocked: false },
+            { id: 'max_multiplier', multiplier: 10, title: 'Максимальный множитель!', desc: 'Достигните множителя x10', icon: 'fa-times-circle', unlocked: false },
+            { id: 'max_click_power', clickPower: 10, title: 'Максимальная сила!', desc: 'Достигните силы клика 10', icon: 'fa-fist-raised', unlocked: false }
         ];
-
+        
         // Магазин
-        let shopItems = {
-            boosters: [
-                { id: 'booster_30min', name: 'Буст x2 на 30 мин', price: 200, effect: { multiplier: 2 }, duration: 1800 },
-                { id: 'booster_1h', name: 'Буст x2 на 1 час', price: 350, effect: { multiplier: 2 }, duration: 3600 },
-                { id: 'booster_4h', name: 'Буст x3 на 4 часа', price: 800, effect: { multiplier: 3 }, duration: 14400 }
+        const shopItems = {
+            click: [
+                { id: 'click_power_1', name: '+1 к силе клика', price: 30, effect: { clickPower: 1 } },
+                { id: 'click_power_2', name: '+2 к силе клика', price: 75, effect: { clickPower: 2 } },
+                { id: 'click_power_5', name: '+5 к силе клика', price: 200, effect: { clickPower: 5 } },
+                { id: 'multiplier_2', name: 'Множитель x2', price: 100, effect: { multiplier: 2 } },
+                { id: 'multiplier_3', name: 'Множитель x3', price: 300, effect: { multiplier: 3 } },
+                { id: 'multiplier_5', name: 'Множитель x5', price: 800, effect: { multiplier: 5 } }
             ],
-            skins: [
+            auto: [
+                { id: 'auto_clicker_1', name: 'Автокликер Ур.1', price: 50, effect: { autoClicker: 1 } },
+                { id: 'auto_clicker_2', name: 'Автокликер Ур.2', price: 150, effect: { autoClicker: 2 } },
+                { id: 'auto_clicker_5', name: 'Автокликер Ур.5', price: 500, effect: { autoClicker: 5 } },
+                { id: 'auto_clicker_10', name: 'Автокликер Ур.10', price: 2000, effect: { autoClicker: 10 } }
+            ],
+            boost: [
+                { id: 'boost_30min', name: 'Буст x2 на 30 мин', price: 200, effect: { boost: 2, duration: 1800 } },
+                { id: 'boost_1h', name: 'Буст x3 на 1 час', price: 450, effect: { boost: 3, duration: 3600 } },
+                { id: 'boost_4h', name: 'Буст x5 на 4 часа', price: 1200, effect: { boost: 5, duration: 14400 } }
+            ],
+            cosmetic: [
+                { id: 'skin_red', name: 'Красная кнопка', price: 500, effect: { skin: 'red' } },
+                { id: 'skin_blue', name: 'Синяя кнопка', price: 500, effect: { skin: 'blue' } },
                 { id: 'skin_gold', name: 'Золотая кнопка', price: 1000, effect: { skin: 'gold' } },
-                { id: 'skin_diamond', name: 'Алмазная кнопка', price: 5000, effect: { skin: 'diamond' } }
-            ],
-            special: [
-                { id: 'special_100clicks', name: 'Автоклик на 100 кликов', price: 1500, effect: { autoClick: 100 } },
-                { id: 'special_mystery', name: 'Таинственный сундук', price: 3000, effect: { random: true } }
+                { id: 'theme_dark', name: 'Темная тема', price: 300, effect: { theme: 'dark' } },
+                { id: 'theme_pink', name: 'Розовая тема', price: 300, effect: { theme: 'pink' } }
             ]
         };
-
-        // Активные бусты
-        let activeBoosters = [];
-
-        // Элементы DOM
+        
+        // DOM элементы
         const counterElement = document.getElementById('counter');
         const clickButton = document.getElementById('clickButton');
         const messageElement = document.getElementById('message');
-        const cpsElement = document.getElementById('clipsPerSecond');
+        const progressElement = document.getElementById('progress');
+        const clicksPerSecondElement = document.getElementById('clicksPerSecond');
         const maxCPSElement = document.getElementById('maxCPS');
         const totalClicksElement = document.getElementById('totalClicks');
-        const achievementElement = document.getElementById('achievement');
-        const progressElement = document.getElementById('progress');
-        const upgradeMultiplierBtn = document.getElementById('upgradeMultiplier');
-        const upgradeClickPowerBtn = document.getElementById('upgradeClickPower');
-        const upgradeAutoClickerBtn = document.getElementById('upgradeAutoClicker');
         const autoClickerLevelElement = document.getElementById('autoClickerLevel');
+        const upgradeAutoClickerButton = document.getElementById('upgradeAutoClicker');
+        const upgradeMultiplierButton = document.getElementById('upgradeMultiplier');
+        const upgradeClickPowerButton = document.getElementById('upgradeClickPower');
+        const userAvatarElement = document.getElementById('userAvatar');
+        const userNameElement = document.getElementById('userName');
+        const modalUserAvatarElement = document.getElementById('modalUserAvatar');
+        const modalUserNameElement = document.getElementById('modalUserName');
         const settingsBtn = document.getElementById('settingsBtn');
         const settingsModal = document.getElementById('settingsModal');
         const closeSettingsBtn = document.getElementById('closeSettings');
-        const loadingElement = document.getElementById('loading');
-        const userAvatarElement = document.getElementById('userAvatar');
-        const userNameElement = document.getElementById('userName');
-        const userIdElement = document.getElementById('userId');
-        const soundEnabledCheckbox = document.getElementById('soundEnabled');
-        const musicEnabledCheckbox = document.getElementById('musicEnabled');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const darkThemeCheckbox = document.getElementById('darkTheme');
-        const particlesCheckbox = document.getElementById('particlesEnabled');
-        const statsTotalClicksElement = document.getElementById('statsTotalClicks');
-        const statsMaxCPSElement = document.getElementById('statsMaxCPS');
-        const statsPlayTimeElement = document.getElementById('statsPlayTime');
-        const exportDataBtn = document.getElementById('exportData');
-        const resetProgressBtn = document.getElementById('resetProgress');
-        const achievementsGrid = document.getElementById('achievements-grid');
-        const shopItemsContainer = document.getElementById('shop-items');
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContainers = document.querySelectorAll('.tab-container');
-
+        const resetProgressBtn = document.getElementById('resetProgressBtn');
+        const resetConfirmation = document.getElementById('resetConfirmation');
+        const confirmResetBtn = document.getElementById('confirmReset');
+        const cancelResetBtn = document.getElementById('cancelReset');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicVolume = document.getElementById('musicVolume');
+        const sfxToggle = document.getElementById('sfxToggle');
+        const sfxVolume = document.getElementById('sfxVolume');
+        const statsTotalClicks = document.getElementById('statsTotalClicks');
+        const statsMaxCPS = document.getElementById('statsMaxCPS');
+        const statsClickPower = document.getElementById('statsClickPower');
+        const statsMultiplier = document.getElementById('statsMultiplier');
+        const statsAutoClicker = document.getElementById('statsAutoClicker');
+        const achievementsList = document.getElementById('achievementsList');
+        const shopItemsContainer = document.getElementById('shopItems');
+        const achievementNotification = document.getElementById('achievementNotification');
+        
         // Аудио элементы
         const clickSound = document.getElementById('clickSound');
         const achievementSound = document.getElementById('achievementSound');
         const upgradeSound = document.getElementById('upgradeSound');
         const backgroundMusic = document.getElementById('backgroundMusic');
-
-        // Сообщения, которые будут появляться при клике
-        const messages = ["Агния", "27", "Агния27", "Агния, Агния!", "27 Агния", "Агния 27 27", "27 27 27!"];
-
+        
         // Инициализация игры
         function initGame() {
             // Инициализация Telegram WebApp
             tg.expand();
             tg.enableClosingConfirmation();
-
-            // Загрузка данных пользователя
-            loadUserData();
-
-            // Загрузка сохраненного прогресса
-            loadGameProgress();
-
-            // Настройка интервалов
-            initCPS();
-            initAutoClicker();
-            initPlayTime();
-
-            // Обновление интерфейса
-            updateUI();
-
-            // Настройка обработчиков событий
-            setupEventListeners();
-
-            // Загрузка достижений
+            
+            // Получение данных пользователя
+            const user = tg.initDataUnsafe.user;
+            if (user) {
+                userAvatarElement.style.backgroundImage = `url(${user.photo_url})`;
+                userNameElement.textContent = `${user.first_name}${user.last_name ? ' ' + user.last_name : ''}`;
+                modalUserAvatarElement.style.backgroundImage = `url(${user.photo_url})`;
+                modalUserNameElement.textContent = `${user.first_name}${user.last_name ? ' ' + user.last_name : ''}`;
+                
+                // Сохраняем ID пользователя
+                userData.userId = user.id;
+            }
+            
+            // Загрузка сохраненных данных
+            loadGameData();
+            
+            // Настройка аудио
+            setupAudio();
+            
+            // Инициализация интервалов
+            setupIntervals();
+            
+            // Инициализация магазина и достижений
             renderAchievements();
-
-            // Загрузка магазина
-            renderShopItems('boosters');
-
+            renderShopItems();
+            
             // Скрытие экрана загрузки
             setTimeout(() => {
-                loadingElement.style.opacity = '0';
+                document.getElementById('loading').style.opacity = '0';
                 setTimeout(() => {
-                    loadingElement.style.display = 'none';
+                    document.getElementById('loading').style.display = 'none';
                 }, 500);
             }, 1000);
+            
+            isInitialized = true;
         }
-
-        // Загрузка данных пользователя из Telegram
-        function loadUserData() {
-            const user = tg.initDataUnsafe?.user;
-            if (user) {
-                userNameElement.textContent = `${user.first_name || ''} ${user.last_name || ''}`.trim() || 'Пользователь';
-                userIdElement.textContent = `ID: ${user.id}`;
-
-                if (user.photo_url) {
-                    userAvatarElement.src = user.photo_url;
-                } else {
-                    userAvatarElement.style.display = 'none';
-                }
-            }
-        }
-
-        // Загрузка прогресса игры из Telegram Cloud Storage
-        function loadGameProgress() {
-            tg.CloudStorage.getKeys((error, keys) => {
-                if (error) {
-                    console.error('Ошибка загрузки прогресса:', error);
-                    return;
-                }
-
-                if (keys && keys.length > 0) {
-                    tg.CloudStorage.getItems(keys, (error, data) => {
-                        if (error) {
-                            console.error('Ошибка загрузки данных:', error);
-                            return;
-                        }
-
-                        if (data) {
-                            // Восстановление прогресса
-                            if (data.count) count = parseInt(data.count);
-                            if (data.totalClicks) totalClicks = parseInt(data.totalClicks);
-                            if (data.clickPower) clickPower = parseInt(data.clickPower);
-                            if (data.multiplier) multiplier = parseInt(data.multiplier);
-                            if (data.autoClickerLevel) autoClickerLevel = parseInt(data.autoClickerLevel);
-                            if (data.criticalChance) criticalChance = parseInt(data.criticalChance);
-                            if (data.criticalMultiplier) criticalMultiplier = parseInt(data.criticalMultiplier);
-                            if (data.maxCPS) maxCPS = parseInt(data.maxCPS);
-                            if (data.playTime) playTime = parseInt(data.playTime);
-
-                            // Восстановление настроек
-                            if (data.settings) {
-                                try {
-                                    const savedSettings = JSON.parse(data.settings);
-                                    settings = { ...settings, ...savedSettings };
-
-                                    // Применение настроек
-                                    soundEnabledCheckbox.checked = settings.sound;
-                                    musicEnabledCheckbox.checked = settings.music;
-                                    volumeSlider.value = settings.volume * 100;
-                                    darkThemeCheckbox.checked = settings.darkTheme;
-                                    particlesCheckbox.checked = settings.particles;
-
-                                    // Применение темы
-                                    if (settings.darkTheme) {
-                                        document.body.classList.add('dark-theme');
-                                    }
-
-                                    // Применение громкости
-                                    setVolume(settings.volume);
-
-                                    // Включение/выключение музыки
-                                    if (settings.music) {
-                                        backgroundMusic.play().catch(e => console.log("Автовоспроизведение музыки заблокировано"));
-                                    }
-                                } catch (e) {
-                                    console.error('Ошибка парсинга настроек:', e);
-                                }
-                            }
-
-                            // Восстановление достижений
-                            if (data.achievements) {
-                                try {
-                                    const savedAchievements = JSON.parse(data.achievements);
-                                    achievements = achievements.map(ach => {
-                                        const saved = savedAchievements.find(a => a.id === ach.id);
-                                        return saved ? { ...ach, ...saved } : ach;
-                                    });
-                                } catch (e) {
-                                    console.error('Ошибка парсинга достижений:', e);
-                                }
-                            }
-
-                            updateUI();
+        
+        // Загрузка данных игры
+        function loadGameData() {
+            const savedData = tg.CloudStorage.getItem('userData');
+            
+            if (savedData) {
+                userData = JSON.parse(savedData);
+                
+                count = userData.count || 0;
+                totalClicks = userData.totalClicks || 0;
+                clickPower = userData.clickPower || 1;
+                multiplier = userData.multiplier || 1;
+                autoClickerLevel = userData.autoClickerLevel || 0;
+                
+                // Восстанавливаем достижения
+                if (userData.achievements) {
+                    userData.achievements.forEach(ach => {
+                        const achievement = achievements.find(a => a.id === ach.id);
+                        if (achievement) {
+                            achievement.unlocked = ach.unlocked;
                         }
                     });
                 }
-            });
+                
+                updateUI();
+            } else {
+                // Инициализация данных по умолчанию
+                userData = {
+                    userId: tg.initDataUnsafe.user?.id || 'guest',
+                    count: 0,
+                    totalClicks: 0,
+                    clickPower: 1,
+                    multiplier: 1,
+                    autoClickerLevel: 0,
+                    achievements: [],
+                    upgrades: {},
+                    inventory: [],
+                    settings: {
+                        sound: true,
+                        music: true,
+                        volume: 0.8
+                    }
+                };
+                
+                saveGameData();
+            }
         }
-
-        // Сохранение прогресса игры в Telegram Cloud Storage
-        function saveGameProgress() {
-            const data = {
-                count: count.toString(),
-                totalClicks: totalClicks.toString(),
-                clickPower: clickPower.toString(),
-                multiplier: multiplier.toString(),
-                autoClickerLevel: autoClickerLevel.toString(),
-                criticalChance: criticalChance.toString(),
-                criticalMultiplier: criticalMultiplier.toString(),
-                maxCPS: maxCPS.toString(),
-                playTime: playTime.toString(),
-                settings: JSON.stringify(settings),
-                achievements: JSON.stringify(achievements)
-            };
-
-            tg.CloudStorage.setItems(data, (error) => {
-                if (error) {
-                    console.error('Ошибка сохранения:', error);
+        
+        // Сохранение данных игры
+        function saveGameData() {
+            userData.count = count;
+            userData.totalClicks = totalClicks;
+            userData.clickPower = clickPower;
+            userData.multiplier = multiplier;
+            userData.autoClickerLevel = autoClickerLevel;
+            
+            // Сохраняем достижения
+            userData.achievements = achievements.map(ach => ({
+                id: ach.id,
+                unlocked: ach.unlocked
+            }));
+            
+            tg.CloudStorage.setItem('userData', JSON.stringify(userData));
+        }
+        
+        // Настройка аудио
+        function setupAudio() {
+            // Восстанавливаем настройки звука
+            if (userData.settings) {
+                musicToggle.checked = userData.settings.music;
+                sfxToggle.checked = userData.settings.sound;
+                musicVolume.value = userData.settings.volume * 100;
+                sfxVolume.value = userData.settings.volume * 100;
+                
+                backgroundMusic.volume = userData.settings.music ? userData.settings.volume : 0;
+                clickSound.volume = userData.settings.sound ? userData.settings.volume : 0;
+                achievementSound.volume = userData.settings.sound ? userData.settings.volume : 0;
+                upgradeSound.volume = userData.settings.sound ? userData.settings.volume : 0;
+            }
+            
+            // Запускаем музыку, если включена
+            if (musicToggle.checked) {
+                backgroundMusic.play().catch(e => console.log("Autoplay prevented:", e));
+            }
+            
+            // Обработчики изменения настроек звука
+            musicToggle.addEventListener('change', () => {
+                userData.settings.music = musicToggle.checked;
+                backgroundMusic.volume = musicToggle.checked ? userData.settings.volume : 0;
+                
+                if (musicToggle.checked) {
+                    backgroundMusic.play().catch(e => console.log("Play prevented:", e));
                 }
+                
+                saveGameData();
+            });
+            
+            sfxToggle.addEventListener('change', () => {
+                userData.settings.sound = sfxToggle.checked;
+                const volume = sfxToggle.checked ? userData.settings.volume : 0;
+                clickSound.volume = volume;
+                achievementSound.volume = volume;
+                upgradeSound.volume = volume;
+                saveGameData();
+            });
+            
+            musicVolume.addEventListener('input', () => {
+                userData.settings.volume = musicVolume.value / 100;
+                backgroundMusic.volume = musicToggle.checked ? userData.settings.volume : 0;
+                saveGameData();
+            });
+            
+            sfxVolume.addEventListener('input', () => {
+                userData.settings.volume = sfxVolume.value / 100;
+                const volume = sfxToggle.checked ? userData.settings.volume : 0;
+                clickSound.volume = volume;
+                achievementSound.volume = volume;
+                upgradeSound.volume = volume;
+                saveGameData();
             });
         }
-
-        // Инициализация подсчета кликов в секунду
-        function initCPS() {
-            let lastClicks = totalClicks;
-
+        
+        // Настройка интервалов
+        function setupIntervals() {
+            // Интервал для авто-кликера
+            if (autoClickerInterval) clearInterval(autoClickerInterval);
+            autoClickerInterval = setInterval(() => {
+                if (autoClickerLevel > 0) {
+                    const autoClicks = autoClickerLevel;
+                    addCount(autoClicks);
+                    showFloatingText(`+${autoClicks}`, clickButton);
+                }
+            }, 1000);
+            
+            // Интервал для подсчета кликов в секунду
+            if (cpsInterval) clearInterval(cpsInterval);
+            let lastSecondClicks = 0;
             cpsInterval = setInterval(() => {
-                clicksInLastSecond = totalClicks - lastClicks;
-                lastClicks = totalClicks;
-
+                clicksInLastSecond = totalClicks - lastSecondClicks;
+                lastSecondClicks = totalClicks;
+                
                 if (clicksInLastSecond > maxCPS) {
                     maxCPS = clicksInLastSecond;
+                    maxCPSElement.textContent = maxCPS;
                 }
-
-                updateUI();
+                
+                clicksPerSecondElement.textContent = clicksInLastSecond;
                 checkAchievements();
             }, 1000);
         }
-
-        // Инициализация автокликера
-        function initAutoClicker() {
-            if (autoClickerInterval) {
-                clearInterval(autoClickerInterval);
-            }
-
-            if (autoClickerLevel > 0) {
-                autoClickerInterval = setInterval(() => {
-                    const autoClicks = autoClickerLevel;
-                    addClicks(autoClicks);
-                }, 1000);
-            }
-        }
-
-        // Инициализация таймера игрового времени
-        function initPlayTime() {
-            playTimeInterval = setInterval(() => {
-                playTime++;
-
-                // Обновляем время в настройках каждую минуту
-                if (playTime % 60 === 0) {
-                    updateSettingsUI();
-                }
-            }, 1000);
-        }
-
-        // Добавление кликов
-        function addClicks(amount) {
-            // Проверка на критический удар
-            let isCritical = false;
-            if (Math.random() < criticalChance / 100) {
-                amount *= criticalMultiplier;
-                isCritical = true;
-            }
-
-            // Применение множителя
-            const addedCount = Math.floor(amount * multiplier);
-            count += addedCount;
-            totalClicks += amount;
-
-            // Обновление UI
-            updateUI();
-
-            // Сохранение прогресса
-            saveGameProgress();
-
-            // Визуальные эффекты
-            if (isCritical) {
-                showCriticalEffect(amount);
+        
+        // Обновление интерфейса
+        function updateUI() {
+            counterElement.textContent = Math.floor(count);
+            totalClicksElement.textContent = totalClicks;
+            autoClickerLevelElement.textContent = autoClickerLevel;
+            
+            // Обновление статистики в модальном окне
+            statsTotalClicks.textContent = totalClicks;
+            statsMaxCPS.textContent = maxCPS;
+            statsClickPower.textContent = clickPower;
+            statsMultiplier.textContent = `${multiplier}x`;
+            statsAutoClicker.textContent = autoClickerLevel;
+            
+            // Обновление прогресс-бара
+            const nextAchievement = achievements.find(a => !a.unlocked);
+            if (nextAchievement && nextAchievement.count) {
+                progressElement.style.width = `${Math.min(100, (count / nextAchievement.count) * 100)}%`;
             } else {
-                showClickEffect(amount);
+                progressElement.style.width = '100%';
             }
-
-            // Воспроизведение звука
-            playSound(clickSound);
-
+            
+            // Обновление кнопок улучшений
+            upgradeAutoClickerButton.textContent = `Улучшить (${Math.floor(50 * Math.pow(1.5, autoClickerLevel))} кликов)`;
+            upgradeAutoClickerButton.disabled = count < Math.floor(50 * Math.pow(1.5, autoClickerLevel));
+            
+            upgradeMultiplierButton.textContent = `Умножитель x${multiplier + 1} (${Math.floor(100 * Math.pow(2, multiplier))} кликов)`;
+            upgradeMultiplierButton.disabled = count < Math.floor(100 * Math.pow(2, multiplier));
+            
+            upgradeClickPowerButton.textContent = `Сила клика +1 (${Math.floor(30 * Math.pow(1.8, clickPower))} кликов)`;
+            upgradeClickPowerButton.disabled = count < Math.floor(30 * Math.pow(1.8, clickPower));
+        }
+        
+        // Добавление кликов
+        function addCount(amount) {
+            const actualAmount = amount * multiplier;
+            count += actualAmount;
+            totalClicks += amount;
+            
+            updateUI();
+            saveGameData();
+            
             // Виброотклик
             tg.HapticFeedback.impactOccurred('light');
         }
-
+        
         // Покупка улучшения
-        function buyUpgrade(type, cost) {
+        function buyUpgrade(cost, upgradeCallback) {
             if (count >= cost) {
                 count -= cost;
-
-                switch (type) {
-                    case 'multiplier':
-                        multiplier *= 2;
-                        break;
-                    case 'clickPower':
-                        clickPower += 1;
-                        break;
-                    case 'autoClicker':
-                        autoClickerLevel += 1;
-                        initAutoClicker();
-                        break;
-                    case 'criticalChance':
-                        criticalChance += 5;
-                        break;
-                    case 'criticalMultiplier':
-                        criticalMultiplier *= 2;
-                        break;
-                }
-
-                // Воспроизведение звука
-                playSound(upgradeSound);
-
-                // Сохранение прогресса
-                saveGameProgress();
-
-                // Обновление UI
+                upgradeCallback();
                 updateUI();
-
-                // Проверка достижений
-                checkAchievements();
-
+                saveGameData();
+                
+                // Проигрываем звук улучшения
+                if (sfxToggle.checked) {
+                    upgradeSound.currentTime = 0;
+                    upgradeSound.play();
+                }
+                
+                // Показываем сообщение
+                showMessage('Улучшение приобретено!');
+                
+                // Проверяем достижение "Первое улучшение"
+                if (!achievements.find(a => a.id === 'first_upgrade').unlocked) {
+                    unlockAchievement('first_upgrade');
+                }
+                
                 return true;
+            } else {
+                showMessage('Недостаточно кликов!');
+                return false;
             }
-
-            return false;
         }
-
-        // Покупка товара в магазине
+        
+        // Покупка предмета в магазине
         function buyShopItem(item) {
             if (count >= item.price) {
                 count -= item.price;
-
-                // Применение эффекта товара
-                if (item.effect.multiplier) {
-                    // Активация буста
-                    const booster = {
-                        effect: item.effect,
-                        expires: Date.now() + (item.duration * 1000)
-                    };
-                    activeBoosters.push(booster);
-                    applyBoosters();
-
-                    // Таймер для удаления буста
-                    setTimeout(() => {
-                        activeBoosters = activeBoosters.filter(b => b !== booster);
-                        applyBoosters();
-                        updateUI();
-                    }, item.duration * 1000);
+                
+                // Применяем эффект предмета
+                if (item.effect.clickPower) {
+                    clickPower += item.effect.clickPower;
+                    showMessage(`Сила клика увеличена на ${item.effect.clickPower}!`);
+                } else if (item.effect.multiplier) {
+                    multiplier += item.effect.multiplier;
+                    showMessage(`Множитель увеличен до x${multiplier}!`);
+                } else if (item.effect.autoClicker) {
+                    autoClickerLevel += item.effect.autoClicker;
+                    showMessage(`Автокликер улучшен до уровня ${autoClickerLevel}!`);
+                    setupIntervals(); // Перезапускаем интервалы для нового уровня автокликера
+                } else if (item.effect.skin) {
+                    applySkin(item.effect.skin);
+                    showMessage(`Скин "${item.name}" применен!`);
+                } else if (item.effect.theme) {
+                    applyTheme(item.effect.theme);
+                    showMessage(`Тема "${item.name}" применена!`);
                 }
-
-                // Сохранение прогресса
-                saveGameProgress();
-
-                // Обновление UI
+                
+                // Добавляем предмет в инвентарь
+                if (!userData.inventory) userData.inventory = [];
+                userData.inventory.push(item.id);
+                
                 updateUI();
-
+                saveGameData();
+                
+                // Проигрываем звук покупки
+                if (sfxToggle.checked) {
+                    upgradeSound.currentTime = 0;
+                    upgradeSound.play();
+                }
+                
                 return true;
+            } else {
+                showMessage('Недостаточно кликов!');
+                return false;
             }
-
-            return false;
         }
-
-        // Применение активных бустов
-        function applyBoosters() {
-            let totalMultiplier = 1;
-
-            activeBoosters.forEach(booster => {
-                totalMultiplier *= booster.effect.multiplier;
-            });
-
-            multiplier = totalMultiplier;
+        
+        // Применение скина
+        function applySkin(skin) {
+            switch(skin) {
+                case 'red':
+                    clickButton.style.background = 'linear-gradient(145deg, #ff6b6b, #ff8e8e)';
+                    break;
+                case 'blue':
+                    clickButton.style.background = 'linear-gradient(145deg, #4facfe, #00f2fe)';
+                    break;
+                case 'gold':
+                    clickButton.style.background = 'linear-gradient(145deg, #ffd700, #ffec8b)';
+                    break;
+            }
         }
-
+        
+        // Применение темы
+        function applyTheme(theme) {
+            switch(theme) {
+                case 'dark':
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', '#1a1a2e');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', '#0f3460');
+                    break;
+                case 'pink':
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', '#ff6b95');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', '#ff9e9e');
+                    break;
+                default:
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', '#6a11cb');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', '#2575fc');
+            }
+        }
+        
+        // Показ плавающего текста
+        function showFloatingText(text, element) {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            const floatingText = document.createElement('div');
+            floatingText.className = 'floating';
+            floatingText.textContent = text;
+            floatingText.style.left = `${x}px`;
+            floatingText.style.top = `${y}px`;
+            
+            document.body.appendChild(floatingText);
+            
+            setTimeout(() => {
+                document.body.removeChild(floatingText);
+            }, 3000);
+        }
+        
+        // Показ сообщения
+        function showMessage(text) {
+            messageElement.textContent = text;
+            
+            // Очищаем сообщение через 3 секунды
+            setTimeout(() => {
+                if (messageElement.textContent === text) {
+                    messageElement.textContent = '';
+                }
+            }, 3000);
+        }
+        
         // Проверка достижений
         function checkAchievements() {
             achievements.forEach(achievement => {
                 if (!achievement.unlocked) {
                     let unlocked = false;
-
-                    if (achievement.count && totalClicks >= achievement.count) {
+                    
+                    if (achievement.count && count >= achievement.count) {
+                        unlocked = true;
+                    } else if (achievement.cps && clicksInLastSecond >= achievement.cps) {
+                        unlocked = true;
+                    } else if (achievement.multiplier && multiplier >= achievement.multiplier) {
+                        unlocked = true;
+                    } else if (achievement.clickPower && clickPower >= achievement.clickPower) {
                         unlocked = true;
                     }
-
-                    if (achievement.cps && maxCPS >= achievement.cps) {
-                        unlocked = true;
-                    }
-
-                    if (achievement.upgrade && autoClickerLevel > 0) {
-                        unlocked = true;
-                    }
-
-                    if (achievement.multiplier && multiplier >= achievement.multiplier) {
-                        unlocked = true;
-                    }
-
+                    
                     if (unlocked) {
-                        achievement.unlocked = true;
-                        showAchievement(achievement);
-                        saveGameProgress();
+                        unlockAchievement(achievement.id);
                     }
                 }
             });
         }
-
-        // Показ достижения
-        function showAchievement(achievement) {
-            achievementElement.textContent = `${achievement.icon} ${achievement.title}`;
-            achievementElement.classList.add('show');
-
-            // Воспроизведение звука
-            playSound(achievementSound);
-
-            // Виброотклик
-            tg.HapticFeedback.notificationOccurred('success');
-
-            setTimeout(() => {
-                achievementElement.classList.remove('show');
-            }, 3000);
-        }
-
-        // Отображение эффекта клика
-        function showClickEffect(amount) {
-            if (!settings.particles) return;
-
-            const effect = document.createElement('div');
-            effect.className = 'floating';
-            effect.textContent = `+${amount}`;
-            effect.style.left = `${Math.random() * 80 + 10}%`;
-            effect.style.color = '#ffffff';
-
-            document.body.appendChild(effect);
-
-            setTimeout(() => {
-                document.body.removeChild(effect);
-            }, 3000);
-        }
-
-        // Отображение эффекта критического удара
-        function showCriticalEffect(amount) {
-            if (!settings.particles) return;
-
-            const effect = document.createElement('div');
-            effect.className = 'floating';
-            effect.textContent = `КРИТ! +${amount}`;
-            effect.style.left = `${Math.random() * 80 + 10}%`;
-            effect.style.color = '#ffeb3b';
-            effect.style.fontSize = '1.5rem';
-
-            document.body.appendChild(effect);
-
-            // Виброотклик
-            tg.HapticFeedback.impactOccurred('heavy');
-
-            setTimeout(() => {
-                document.body.removeChild(effect);
-            }, 3000);
-        }
-
-        // Воспроизведение звука
-        function playSound(soundElement) {
-            if (!settings.sound) return;
-
-            soundElement.currentTime = 0;
-            soundElement.volume = settings.volume;
-            soundElement.play().catch(e => console.log("Воспроизведение звука заблокировано"));
-        }
-
-        // Установка громкости
-        function setVolume(volume) {
-            settings.volume = volume;
-
-            clickSound.volume = volume;
-            achievementSound.volume = volume;
-            upgradeSound.volume = volume;
-            backgroundMusic.volume = volume * 0.7;
-        }
-
-        // Обновление интерфейса
-        function updateUI() {
-            // Обновление счетчиков
-            counterElement.textContent = formatNumber(count);
-            cpsElement.textContent = clicksInLastSecond;
-            maxCPSElement.textContent = maxCPS;
-            totalClicksElement.textContent = formatNumber(totalClicks);
-            autoClickerLevelElement.textContent = autoClickerLevel;
-
-            // Обновление прогресс-бара
-            const nextUpgrade = Math.max(50, 100, 30);
-            const progress = Math.min((count / nextUpgrade) * 100, 100);
-            progressElement.style.width = `${progress}%`;
-
-            // Обновление кнопок улучшений
-            upgradeMultiplierBtn.disabled = count < 100;
-            upgradeClickPowerBtn.disabled = count < 30;
-            upgradeAutoClickerBtn.disabled = count < 50;
-
-            // Обновление текста кнопок улучшений
-            upgradeMultiplierBtn.textContent = `Умножитель x${multiplier * 2} (${formatNumber(100 * Math.pow(2, Math.log2(multiplier)))})`;
-            upgradeClickPowerBtn.textContent = `Сила клика +1 (${formatNumber(30 + clickPower * 10)})`;
-            upgradeAutoClickerBtn.textContent = `Улучшить (${formatNumber(50 + autoClickerLevel * 50)})`;
-
-            // Случайное сообщение
-            if (clicksInLastSecond > 0 && Math.random() < 0.1) {
-                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                messageElement.textContent = randomMessage;
-
+        
+        // Разблокировка достижения
+        function unlockAchievement(achievementId) {
+            const achievement = achievements.find(a => a.id === achievementId);
+            if (achievement && !achievement.unlocked) {
+                achievement.unlocked = true;
+                
+                // Показываем уведомление
+                const notification = achievementNotification;
+                notification.querySelector('.achievement-message').textContent = `Достижение разблокировано: ${achievement.title}`;
+                notification.classList.add('show');
+                
+                // Проигрываем звук достижения
+                if (sfxToggle.checked) {
+                    achievementSound.currentTime = 0;
+                    achievementSound.play();
+                }
+                
+                // Виброотклик
+                tg.HapticFeedback.notificationOccurred('success');
+                
+                // Обновляем список достижений
+                renderAchievements();
+                
+                // Скрываем уведомление через 5 секунд
                 setTimeout(() => {
-                    messageElement.textContent = '';
-                }, 2000);
+                    notification.classList.remove('show');
+                }, 5000);
+                
+                saveGameData();
             }
         }
-
-        // Обновление UI настроек
-        function updateSettingsUI() {
-            statsTotalClicksElement.textContent = formatNumber(totalClicks);
-            statsMaxCPSElement.textContent = maxCPS;
-
-            const minutes = Math.floor(playTime / 60);
-            const seconds = playTime % 60;
-            statsPlayTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // Отображение достижений
+        
+        // Отрисовка достижений
         function renderAchievements() {
-            achievementsGrid.innerHTML = '';
-
+            achievementsList.innerHTML = '';
+            
             achievements.forEach(achievement => {
                 const achievementElement = document.createElement('div');
                 achievementElement.className = `achievement-item ${achievement.unlocked ? '' : 'locked'}`;
-
+                
                 achievementElement.innerHTML = `
-                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-icon"><i class="fas ${achievement.icon}"></i></div>
                     <div class="achievement-title">${achievement.title}</div>
-                    <div class="achievement-desc">${achievement.description}</div>
+                    <div class="achievement-desc">${achievement.desc}</div>
                 `;
-
-                achievementsGrid.appendChild(achievementElement);
+                
+                achievementsList.appendChild(achievementElement);
             });
         }
-
-        // Отображение товаров магазина
-        function renderShopItems(category) {
+        
+        // Отрисовка предметов магазина
+        function renderShopItems() {
             shopItemsContainer.innerHTML = '';
-
-            const items = shopItems[category];
-
+            
+            const activeCategory = document.querySelector('.shop-category.active').dataset.category;
+            const items = shopItems[activeCategory];
+            
             items.forEach(item => {
-                const itemElement = document.createElement('button');
-                itemElement.className = 'shop-item';
-                itemElement.disabled = count < item.price;
-
+                const itemElement = document.createElement('div');
+                itemElement.className = `shop-item ${count >= item.price ? '' : 'disabled'}`;
+                
                 itemElement.innerHTML = `
-                    <div class="shop-item-title">${item.name}</div>
-                    <div class="shop-item-price">${formatNumber(item.price)} кликов</div>
+                    <div class="shop-item-name">${item.name}</div>
+                    <div class="shop-item-price">${item.price} кликов</div>
                 `;
-
-                itemElement.addEventListener('click', () => {
-                    if (buyShopItem(item)) {
-                        renderShopItems(category);
-                    }
-                });
-
+                
+                if (count >= item.price) {
+                    itemElement.addEventListener('click', () => {
+                        if (buyShopItem(item)) {
+                            renderShopItems(); // Обновляем магазин после покупки
+                        }
+                    });
+                }
+                
                 shopItemsContainer.appendChild(itemElement);
             });
         }
-
-        // Форматирование чисел (1000 -> 1K)
-        function formatNumber(num) {
-            if (num >= 1000000) {
-                return (num / 1000000).toFixed(1) + 'M';
+        
+        // Обработчики событий
+        clickButton.addEventListener('click', () => {
+            addCount(clickPower);
+            clickButton.classList.add('pulse');
+            
+            // Показываем плавающий текст
+            showFloatingText(`+${clickPower * multiplier}`, clickButton);
+            
+            // Проигрываем звук клика
+            if (sfxToggle.checked) {
+                clickSound.currentTime = 0;
+                clickSound.play();
             }
-            if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'K';
-            }
-            return num.toString();
-        }
-
-        // Настройка обработчиков событий
-        function setupEventListeners() {
-            // Основной клик
-            clickButton.addEventListener('click', () => {
-                addClicks(clickPower);
-                clickButton.classList.add('pulse');
+            
+            // Убираем класс pulse после анимации
+            setTimeout(() => {
+                clickButton.classList.remove('pulse');
+            }, 300);
+            
+            // Создаем частицы
+            createParticles(clickButton);
+        });
+        
+        upgradeAutoClickerButton.addEventListener('click', () => {
+            const cost = Math.floor(50 * Math.pow(1.5, autoClickerLevel));
+            buyUpgrade(cost, () => {
+                autoClickerLevel++;
+                setupIntervals(); // Перезапускаем интервалы для нового уровня автокликера
+            });
+        });
+        
+        upgradeMultiplierButton.addEventListener('click', () => {
+            const cost = Math.floor(100 * Math.pow(2, multiplier));
+            buyUpgrade(cost, () => {
+                multiplier++;
+                
+                // Проверяем достижение "Максимальный множитель"
+                if (multiplier >= 10 && !achievements.find(a => a.id === 'max_multiplier').unlocked) {
+                    unlockAchievement('max_multiplier');
+                }
+            });
+        });
+        
+        upgradeClickPowerButton.addEventListener('click', () => {
+            const cost = Math.floor(30 * Math.pow(1.8, clickPower));
+            buyUpgrade(cost, () => {
+                clickPower++;
+                
+                // Проверяем достижение "Максимальная сила"
+                if (clickPower >= 10 && !achievements.find(a => a.id === 'max_click_power').unlocked) {
+                    unlockAchievement('max_click_power');
+                }
+            });
+        });
+        
+        settingsBtn.addEventListener('click', () => {
+            settingsModal.classList.add('active');
+        });
+        
+        closeSettingsBtn.addEventListener('click', () => {
+            settingsModal.classList.remove('active');
+        });
+        
+        resetProgressBtn.addEventListener('click', () => {
+            resetConfirmation.style.display = 'block';
+        });
+        
+        confirmResetBtn.addEventListener('click', () => {
+            // Сброс прогресса
+            count = 0;
+            totalClicks = 0;
+            clickPower = 1;
+            multiplier = 1;
+            autoClickerLevel = 0;
+            maxCPS = 0;
+            
+            // Сброс достижений
+            achievements.forEach(a => a.unlocked = false);
+            
+            // Сброс тем и скинов
+            applyTheme('default');
+            clickButton.style.background = 'linear-gradient(145deg, var(--tg-theme-button-color), #ff8e8e)';
+            
+            updateUI();
+            saveGameData();
+            
+            resetConfirmation.style.display = 'none';
+            settingsModal.classList.remove('active');
+            
+            showMessage('Прогресс сброшен!');
+        });
+        
+        cancelResetBtn.addEventListener('click', () => {
+            resetConfirmation.style.display = 'none';
+        });
+        
+        // Обработчики вкладок
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Убираем активный класс у всех вкладок
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Добавляем активный класс к выбранной вкладке
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+            });
+        });
+        
+        // Обработчики категорий магазина
+        document.querySelectorAll('.shop-category').forEach(category => {
+            category.addEventListener('click', () => {
+                document.querySelectorAll('.shop-category').forEach(c => c.classList.remove('active'));
+                category.classList.add('active');
+                renderShopItems();
+            });
+        });
+        
+        // Обработчики выбора темы
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTheme(btn.dataset.theme);
+            });
+        });
+        
+        // Создание частиц
+        function createParticles(element) {
+            const rect = element.getBoundingClientRect();
+            const count = 10;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 50 + 30;
+                const duration = Math.random() * 1000 + 500;
+                
+                particle.style.animation = `none`;
+                particle.style.transform = `translate(0, 0)`;
+                
+                document.body.appendChild(particle);
+                
+                // Анимируем частицу
                 setTimeout(() => {
-                    clickButton.classList.remove('pulse');
-                }, 300);
-            });
-
-            // Улучшения
-            upgradeMultiplierBtn.addEventListener('click', () => {
-                const cost = 100 * Math.pow(2, Math.log2(multiplier));
-                if (buyUpgrade('multiplier', cost)) {
-                    updateUI();
-                }
-            });
-
-            upgradeClickPowerBtn.addEventListener('click', () => {
-                const cost = 30 + clickPower * 10;
-                if (buyUpgrade('clickPower', cost)) {
-                    updateUI();
-                }
-            });
-
-            upgradeAutoClickerBtn.addEventListener('click', () => {
-                const cost = 50 + autoClickerLevel * 50;
-                if (buyUpgrade('autoClicker', cost)) {
-                    updateUI();
-                }
-            });
-
-            // Кнопка настроек
-            settingsBtn.addEventListener('click', () => {
-                updateSettingsUI();
-                settingsModal.classList.add('active');
-            });
-
-            closeSettingsBtn.addEventListener('click', () => {
-                settingsModal.classList.remove('active');
-            });
-
-            // Настройки звука
-            soundEnabledCheckbox.addEventListener('change', () => {
-                settings.sound = soundEnabledCheckbox.checked;
-                saveGameProgress();
-            });
-
-            musicEnabledCheckbox.addEventListener('change', () => {
-                settings.music = musicEnabledCheckbox.checked;
-
-                if (settings.music) {
-                    backgroundMusic.play().catch(e => console.log("Автовоспроизведение музыки заблокировано"));
-                } else {
-                    backgroundMusic.pause();
-                }
-
-                saveGameProgress();
-            });
-
-            volumeSlider.addEventListener('input', () => {
-                const volume = volumeSlider.value / 100;
-                setVolume(volume);
-                settings.volume = volume;
-                saveGameProgress();
-            });
-
-            // Настройки темы
-            darkThemeCheckbox.addEventListener('change', () => {
-                settings.darkTheme = darkThemeCheckbox.checked;
-
-                if (settings.darkTheme) {
-                    document.body.classList.add('dark-theme');
-                } else {
-                    document.body.classList.remove('dark-theme');
-                }
-
-                saveGameProgress();
-            });
-
-            particlesCheckbox.addEventListener('change', () => {
-                settings.particles = particlesCheckbox.checked;
-                saveGameProgress();
-            });
-
-            // Действия
-            exportDataBtn.addEventListener('click', () => {
-                const data = JSON.stringify({
-                    count,
-                    totalClicks,
-                    clickPower,
-                    multiplier,
-                    autoClickerLevel,
-                    criticalChance,
-                    criticalMultiplier,
-                    maxCPS,
-                    playTime,
-                    achievements: achievements.filter(a => a.unlocked).map(a => a.title)
-                }, null, 2);
-
-                const blob = new Blob([data], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'agnia27_save.json';
-                a.click();
-
-                URL.revokeObjectURL(url);
-            });
-
-            resetProgressBtn.addEventListener('click', () => {
-                if (confirm('Вы уверены, что хотите сбросить весь прогресс? Это действие нельзя отменить.')) {
-                    // Сброс прогресса
-                    count = 0;
-                    totalClicks = 0;
-                    clickPower = 1;
-                    multiplier = 1;
-                    autoClickerLevel = 0;
-                    criticalChance = 0;
-                    criticalMultiplier = 2;
-                    maxCPS = 0;
-                    playTime = 0;
-
-                    // Сброс достижений
-                    achievements.forEach(a => a.unlocked = false);
-
-                    // Перезапуск автокликера
-                    initAutoClicker();
-
-                    // Обновление UI
-                    updateUI();
-                    renderAchievements();
-
-                    // Сохранение
-                    saveGameProgress();
-
-                    // Уведомление
-                    tg.showPopup({
-                        title: 'Прогресс сброшен',
-                        message: 'Все данные были успешно сброшены.',
-                        buttons: [{ type: 'ok' }]
-                    });
-                }
-            });
-
-            // Переключение вкладок
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-
-                    // Активация кнопки
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    // Активация вкладки
-                    tabContainers.forEach(tab => tab.classList.remove('active'));
-                    document.getElementById(`tab-${tabId}`).classList.add('active');
-
-                    // Если открыта вкладка магазина, загружаем товары
-                    if (tabId === 'shop') {
-                        const activeCategory = document.querySelector('.shop-category.active').getAttribute('data-category');
-                        renderShopItems(activeCategory);
-                    }
-                });
-            });
-
-            // Категории магазина
-            document.querySelectorAll('.shop-category').forEach(category => {
-                category.addEventListener('click', () => {
-                    document.querySelectorAll('.shop-category').forEach(c => c.classList.remove('active'));
-                    category.classList.add('active');
-
-                    const categoryName = category.getAttribute('data-category');
-                    renderShopItems(categoryName);
-                });
-            });
-
-            // Улучшения во вкладке
-            document.querySelectorAll('.upgrade[data-upgrade]').forEach(upgrade => {
-                upgrade.addEventListener('click', () => {
-                    const type = upgrade.getAttribute('data-upgrade');
-                    let cost = 0;
-
-                    switch (type) {
-                        case 'multiplier':
-                            cost = 100 * Math.pow(2, Math.log2(multiplier));
-                            break;
-                        case 'clickPower':
-                            cost = 30 + clickPower * 10;
-                            break;
-                        case 'autoClicker':
-                            cost = 50 + autoClickerLevel * 50;
-                            break;
-                        case 'criticalChance':
-                            cost = 200;
-                            break;
-                        case 'criticalMultiplier':
-                            cost = 300;
-                            break;
-                    }
-
-                    if (buyUpgrade(type, cost)) {
-                        updateUI();
-                    }
-                });
-            });
+                    const moveX = Math.cos(angle) * speed;
+                    const moveY = Math.sin(angle) * speed;
+                    
+                    particle.style.transition = `transform ${duration}ms ease-out, opacity ${duration}ms ease-out`;
+                    particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    particle.style.opacity = '0';
+                    
+                    // Удаляем частицу после анимации
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            document.body.removeChild(particle);
+                        }
+                    }, duration);
+                }, 10);
+            }
         }
-
+        
         // Инициализация игры при загрузке
-        document.addEventListener('DOMContentLoaded', initGame);
-
-        // Обработка видимости страницы (пауза музыки при скрытии)
+        window.addEventListener('DOMContentLoaded', initGame);
+        
+        // Обработка видимости страницы для паузы музыки
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 backgroundMusic.pause();
-            } else if (settings.music) {
-                backgroundMusic.play().catch(e => console.log("Автовоспроизведение музыки заблокировано"));
+            } else if (musicToggle.checked) {
+                backgroundMusic.play().catch(e => console.log("Play prevented:", e));
             }
         });
     </script>
